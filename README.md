@@ -77,6 +77,17 @@ Export options:
 bower-license -e json
 ```
 
+```
+bower-license -e csv
+```
+
+Ignore options:
+
+```
+bower-license -i vibe,xsight
+```
+
+
 Used as a library:
 
 ```

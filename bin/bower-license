@@ -12,8 +12,11 @@ var parsed = require('raptor-args')
             type: 'string',
             description: 'Export format, could be json or tree (default)',
             defaultValue: 'tree'
+        },
+        '--ignore -i': {
+            type: 'string',
+            description: 'Prefixes to ignore'
         }
-
     })
     .usage('Usage: $0 [options]')
     .example(
@@ -32,12 +35,14 @@ var parsed = require('raptor-args')
     })
     .parse();
 
-checker.init({}, function(json, err){
+checker.init({ignore: parsed.ignore}, function(json, err){
     if (!!err) {
         console.log(err);
     } else {
         if (parsed.export==='json'){
             checker.printJson(json);
+        } else if (parsed.export==='csv'){
+            checker.printCsv(json);
         } else{
             checker.printTree(json);
         }
